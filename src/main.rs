@@ -1,7 +1,10 @@
 use std::io;
 use std::cmp::Ordering;
+use rand::Rng;
+
 
 fn main() {
+	let num = rand::thread_rng().gen_range(1..100); 
 	println!("Guess the number!");
   println!("Please input your guess.");
 
@@ -17,15 +20,14 @@ fn main() {
 			},
 		};
 		println!("You guessed: {}", guess);
-		println!("{}", num);
-		println!("Please input your guess.");
 		match guess.cmp(&num) {
-			Ordering::Less => println!("Too small!"),
-			Ordering::Greater => println!("Too big!"),
+			Ordering::Less => {println!("Too small!"); println!("\n")},
+			Ordering::Greater => {println!("Too big!"); println!("\n")},
 			Ordering::Equal => {
 				println!("You win!");
 				break;
 			}
 		}
+		println!("Please input your guess.");
 	}
 }
